@@ -8,9 +8,9 @@ public class UnityChanController : MonoBehaviour
     private Animator myAnimator;
     //Unityちゃんを移動させるコンポーネントを入れる（追加）
     private Rigidbody myRigidbody;
-    public float speed = 2f;
+    public float speed = 5f;
     //前進後退するための力
-    private float forwardForce = 500.0f;
+    private float forwardForce = 800.0f;
     //左右に移動するための力（追加）
     private float turnForce = 500.0f;
     //左右の移動できる範囲（追加）
@@ -47,7 +47,7 @@ public class UnityChanController : MonoBehaviour
             //左に移動（追加）
             this.myRigidbody.AddForce(-this.turnForce, 0, 0);
 
-            GetComponent<Animator>().SetTrigger("runTrigger");
+            GetComponent<Animator>().SetTrigger("LrunTrigger");
         }
         else if (Input.GetKey(KeyCode.RightArrow) && this.transform.position.x < this.movableRange)
         {
