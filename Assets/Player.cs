@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector3 velocity;              // 移動方向
     [SerializeField] private float moveSpeed = 800.0f;        // 移動速度
 
+    public GameObject cameraRootObj;
 
     float inputHorizontal;
     float inputVertical;
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             x++;
-            velocity.z += 1;
+            velocity += new Vector3(cameraRootObj.transform.forward.x, 0, cameraRootObj.transform.forward.z);
             GetComponent<Animator>().SetBool("run", true);
         }
 
@@ -45,21 +46,21 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             x++;
-            velocity.x -= 1;
+            velocity += new Vector3(-cameraRootObj.transform.right.x, 0, -cameraRootObj.transform.right.z);
             GetComponent<Animator>().SetBool("run", true);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             x++;
-            velocity.z -= 1;
+            velocity += new Vector3(-cameraRootObj.transform.forward.x, 0, -cameraRootObj.transform.forward.z);
             GetComponent<Animator>().SetBool("run", true);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             x++;
-            velocity.x += 1;
+            velocity += new Vector3(cameraRootObj.transform.right.x, 0, cameraRootObj.transform.right.z);
             GetComponent<Animator>().SetBool("run", true);
         }
 
