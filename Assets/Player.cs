@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.UI;
 
 // プレイヤー
 public class Player : MonoBehaviour
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 800.0f;        // 移動速度
 
     public GameObject cameraRootObj;
+
+    public GameObject AttackArea;
 
     float inputHorizontal;
     float inputVertical;
@@ -76,11 +79,18 @@ public class Player : MonoBehaviour
         //攻撃ボタンの実装
         if (Input.GetKey(KeyCode.E))
         {
-            GetComponent<Animator>().SetBool("Attack",true);
-     
-        }else if (Input.GetKeyUp(KeyCode.E))
+            GetComponent<Animator>().SetBool("Attack", true);
+
+            AttackArea.SetActive(true);
+
+
+
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
         {
             GetComponent<Animator>().SetBool("Attack", false);
+
+            AttackArea.SetActive(false);
         }
 
 
@@ -129,9 +139,18 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(moveForward);
         }
 
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        
 
 
+        //敵に攻撃が当たった時
+        if (other.gameObject.tag == "Enemytag")
+        {
+            Debug.Log("Hit!");
+        }
 
-
+        
     }
 }
