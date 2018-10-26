@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public GameObject AttackArea;
 
+
     float inputHorizontal;
     float inputVertical;
     Rigidbody rb;
@@ -22,6 +23,21 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+
+    void Attack1()
+    {
+        AttackArea.SetActive(true);
+
+    }
+    
+
+void Attack1end()
+    {
+        AttackArea.SetActive(false);
+        
+    }
+
+    
 
     void Update()
     {
@@ -81,7 +97,7 @@ public class Player : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("Attack", true);
 
-            AttackArea.SetActive(true);
+           
 
 
 
@@ -90,7 +106,7 @@ public class Player : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("Attack", false);
 
-            AttackArea.SetActive(false);
+            
         }
 
 
@@ -120,6 +136,9 @@ public class Player : MonoBehaviour
         }
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
+
+
+       
     }
 
     void FixedUpdate()
